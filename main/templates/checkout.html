@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main class="container my-4" id="cartList">
+	<!-- Featured Products -->
+	<div class="row">
+		<div class="col-md-9">
+			<h3 class="my-4 border-bottom pb-1">Cart ({{totalitems}})</h3>
+			<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Product</th>
+				<th>Qty</th>
+				<th>Price</th>
+				<th>Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for product_id,item in cart_data.items %}
+			<tr>
+				<td>
+					<img src="/media/{{item.image}}" width="50" />
+					<p><a href="/product/{{item.title|slugify}}/{{product_id}}">{{item.title}}</a></p>
+				</td>
+				<td>
+					{{item.qty}}
+				</td>
+				<td>$ {{item.price}}</td>
+				<td>$ {% widthratio item.price 1 item.qty %}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="2"></td>
+				<th>Total</th>
+				<th>Rs. {{total_amt}}</th>
+			</tr>
+			{% if totalitems %}
+			<tr>
+				<td colspan="4" align="right">
+					{{form.render}}
+				</td>
+			</tr>
+			{% endif %}
+			<tr><td colspan="4" align="right"><button id="rzp-button1" class="btn btn-dark btn-sm">Buy Now <i class="fa fa-long-arrow-alt-right"></i></button></td></tr>
+		</tfoot>
+	</table>
+		</div>
+		<div class="col-md-3">
+			<h3 class="my-4 border-bottom pb-1">Selected Address</h3>
+			<div class="card">
+				<div class="card-body">
+					<p>{{address.address}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<!-- Razorpay's Javascript code. -->
+<script>
+    var options = {
+       
+      // Enter the Key ID generated from the Dashboard
+      key: "rzp_test_oYyfDYq5uOcOKz",
+       
+      // Amount is in currency subunits.
+      // Default currency is INR. Hence,
+      // 50000 refers to 50000 paise
+      amount: "{{ payment.amount }}",
+      currency: "INR",
+       
+      // Your/store name.
+      name: "StoreIQ",
+	  description:"Purchases",
+       
+      // Pass the `id` obtained in the response of Step 1
+      order_id: "{{ payment.id }}",
+    //   callback_url: "{{ callback_url }}",
+	  handler: function(response){
+		alert(response.razorpay_payment_id);
+		alert(response.razorpay_order_id);
+		alert(response.razorpay_signature);
+	  }
+    };
+     
+    // initialise razorpay with the options.
+    var rzp1 = new Razorpay(options);
+	rzp1.on('payment.failed', function (response){
+		alert(response.error.code);
+		alert(response.error.description);
+		alert(response.error.source);
+		alert(response.error.step);
+		alert(response.error.reason);
+		alert(response.error.metadeta.order_id);
+		alert(response.error.metadeta.payment_id);
+	});
+     
+    // add event listener to the payment button.
+    document.getElementById("rzp-button1").onclick = function (e) {
+      rzp1.open();
+      e.preventDefault();
+    };
+  </script>
+{% endblock %}
