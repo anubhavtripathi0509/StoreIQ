@@ -53,9 +53,15 @@ class Order(models.Model):
 class OrderItems(models.Model):
     order=models.ForeignKey(Order,on_delete=models.CASCADE,related_name='order_items')
     product=models.ForeignKey(Product,on_delete=models.CASCADE)
-    # quantity=models.PositiveIntegerField(default=1)
-    # price=models.FloatField()
-    # total=models.FloatField()
 
     def __str__(self):
         return self.product.title
+    
+# Customer Address Model
+class CustomerAddress(models.Model):
+    customer=models.ForeignKey(Customer,on_delete=models.CASCADE,related_name='customer_address')
+    address=models.TextField()
+    default_address=models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.address

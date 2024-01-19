@@ -1,4 +1,4 @@
-from rest_framework import generics,permissions
+from rest_framework import generics,permissions,pagination,viewsets
 from django.shortcuts import render
 from .serializers import *
 from .models import *
@@ -21,6 +21,7 @@ class VendorDetail(generics.RetrieveUpdateDestroyAPIView):
 class ProductList(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductListSerializer
+    pagination_class = pagination.LimitOffsetPagination
 
 class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
@@ -49,3 +50,11 @@ class OrderDetail(generics.ListAPIView):
         order_items=OrderItems.objects.filter(order=order)
         return order_items
 
+class CustomerAddressViewSet(viewsets.ModelViewSet):
+    serializer_class = CustomerAddressSerializer
+    queryset=CustomerAddress.objects.all()
+    # def get_queryset(self):
+    #     customer_id=self.kwargs['pk']
+    #     customer=Order.objects.get(id=order_id)
+    #     order_items=OrderItems.objects.filter(order=order)
+    #     return order_items
