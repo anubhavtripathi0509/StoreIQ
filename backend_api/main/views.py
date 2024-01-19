@@ -58,3 +58,7 @@ class CustomerAddressViewSet(viewsets.ModelViewSet):
     #     customer=Order.objects.get(id=order_id)
     #     order_items=OrderItems.objects.filter(order=order)
     #     return order_items
+
+class ProductRatingViewSet(viewsets.ModelViewSet):
+    serializer_class = ProductRatingSerializer
+    queryset=ProductRating.objects.all()
