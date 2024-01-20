@@ -7,6 +7,8 @@ import Header from './components/Header';
 import Home from './components/Home';
 import Footer from './components/Footer';
 import Categories from './components/Categories';
+import CategoryProducts from './components/CategoryProducts';
+import Product from './components/Product';
 
 
 function App() {
@@ -16,7 +18,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/categories' element={<Categories/>}/>
-          {/* <Route path='/' element={<Home/>}/> */}
+          <Route path='/category/:category_slug/:category_id' element={<CategoryProducts/>}/>
+          <Route path='/category/:category_slug/:category_id/:product_slug/:product_id' element={<Product title="Django"/>}/>
         </Routes>
       <Footer/>
     </>
