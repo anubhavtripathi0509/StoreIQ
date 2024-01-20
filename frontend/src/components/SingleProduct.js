@@ -9,7 +9,7 @@ function SingleProduct(props){
           <img src={logo} className="card-img-top" alt="..." />
           <div className="card-body">
             {/* <h4 className="card-title"><Link to='/category/python/1/python-timer-script/1'>{props.title}</Link></h4> */}
-            <h4 className="card-title"><Link to='/category/python/1/python-timer-script/1'>{props.title}</Link></h4>
+            <h4 className="card-title"><Link to='/products/python-timer-script/1'>{props.title}</Link></h4>
             <h5 className="card-title text-muted">Price: Rs.500</h5>
           </div>
 

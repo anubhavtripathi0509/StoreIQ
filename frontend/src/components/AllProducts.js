@@ -1,22 +1,22 @@
 import logo from '../logo.svg';
 import {Link} from 'react-router-dom';
-import SingleCategory from './SingleCategory';
+import SingleProduct from './SingleProduct';
 
-function Categories() {
-    return (
-      /* Popular Categories */
-      <div className="row m-4">
-        <h3 className="mb-4">All Categories</h3>
-        <div className="row mb-4">
-            <SingleCategory title="Python"/>
-            <SingleCategory title="Python"/>
-            <SingleCategory title="Python"/>
-            <SingleCategory title="Python"/>
-            <SingleCategory title="Python"/>
-            <SingleCategory title="Python"/>
-            <SingleCategory title="Python"/>
-            <SingleCategory title="Python"/>
-        </div>
+function AllProducts() {
+  return (
+    <div className="container mt-4">
+      {/* Latest Products */}
+      <h3 className="mb-4"><span className='text-success'>All </span>Products</h3>
+            <div className="row mb-4">
+              <SingleProduct title="Django"/>
+              <SingleProduct title="Django"/>
+              <SingleProduct title="Django"/>
+              <SingleProduct title="Django"/>
+              <SingleProduct title="Django"/>
+              <SingleProduct title="Django"/>
+              <SingleProduct title="Django"/>
+              <SingleProduct title="Django"/>
+            </div>
 
             {/* Pagination */}
             <nav aria-label="...">
@@ -34,11 +34,8 @@ function Categories() {
                     </li>
                 </ul>
             </nav>
-      </div>
-      
-      /* End Popular Categories */
-    );
-  }
-  
-  export default Categories;
-  
+    </div>
+  );
+}
+
+export default AllProducts;

@@ -1,281 +1,45 @@
 import logo from '../logo.svg';
+import {Link} from 'react-router-dom';
+import AllProducts from './AllProducts';
+import SingleProduct from './SingleProduct';
+import SingleCategory from './SingleCategory';
+
 function Home() {
     return (
         <main>
         <div className="mt-4">
           <div className="container">
             {/* Latest Products */}
-            <h3 className="mb-4">Latest Products <a href="#" className='float-end btn btn-dark'>View All Products <i className="fa-solid fa-arrow-right-long"></i></a> </h3>
+            <h3 className="mb-4">Latest Products <Link to="/products" className='float-end btn btn-dark'>View All Products <i className="fa-solid fa-arrow-right-long"></i></Link> </h3>
             <div className="row mb-4">
-              {/* Product Box */}
-              <div className="col-12 col-md-3 mb-4">
-                <div className="card">
-                  <img src={logo} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h4 className="card-title">Product title</h4>
-                    <h5 className="card-title text-muted">Price: Rs.500</h5>
-                  </div>
-
-                  <div className="card-footer">
-                    <button title="Add to Cart" className="btn btn-success btn-sm"><i className="fa-solid fa-cart-plus fa-2x"></i></button>
-                    <button title="Add to Wishlist" className="btn btn-danger btn-sm ms-2"><i className="fa fa-heart fa-2x"></i></button>
-                  </div>
-
-                </div>
-              </div>
-              {/* Product Box End */}
-
-              {/* Product Box */}
-              <div className="col-12 col-md-3 mb-4">
-                <div className="card">
-                  <img src={logo} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h4 className="card-title">Product title</h4>
-                    <h5 className="card-title text-muted">Price: Rs.500</h5>
-                  </div>
-
-                  <div className="card-footer">
-                    <button title="Add to Cart" className="btn btn-success btn-sm"><i className="fa-solid fa-cart-plus fa-2x"></i></button>
-                    <button title="Add to Wishlist" className="btn btn-danger btn-sm ms-2"><i className="fa fa-heart fa-2x"></i></button>
-                  </div>
-
-                </div>
-              </div>
-              {/* Product Box End */}
-
-              {/* Product Box */}
-              <div className="col-12 col-md-3 mb-4">
-                <div className="card">
-                  <img src={logo} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h4 className="card-title">Product title</h4>
-                    <h5 className="card-title text-muted">Price: Rs.500</h5>
-                  </div>
-
-                  <div className="card-footer">
-                    <button title="Add to Cart" className="btn btn-success btn-sm"><i className="fa-solid fa-cart-plus fa-2x"></i></button>
-                    <button title="Add to Wishlist" className="btn btn-danger btn-sm ms-2"><i className="fa fa-heart fa-2x"></i></button>
-                  </div>
-
-                </div>
-              </div>
-              {/* Product Box End */}
-
-              {/* Product Box */}
-              <div className="col-12 col-md-3 mb-4">
-                <div className="card">
-                  <img src={logo} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h4 className="card-title">Product title</h4>
-                    <h5 className="card-title text-muted">Price: Rs.500</h5>
-                  </div>
-
-                  <div className="card-footer">
-                    <button title="Add to Cart" className="btn btn-success btn-sm"><i className="fa-solid fa-cart-plus fa-2x"></i></button>
-                    <button title="Add to Wishlist" className="btn btn-danger btn-sm ms-2"><i className="fa fa-heart fa-2x"></i></button>
-                  </div>
-
-                </div>
-              </div>
-              {/* Product Box End */}
-
-              {/* Product Box */}
-              <div className="col-12 col-md-3 mb-4">
-                <div className="card">
-                  <img src={logo} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h4 className="card-title">Product title</h4>
-                    <h5 className="card-title text-muted">Price: Rs.500</h5>
-                  </div>
-
-                  <div className="card-footer">
-                    <button title="Add to Cart" className="btn btn-success btn-sm"><i className="fa-solid fa-cart-plus fa-2x"></i></button>
-                    <button title="Add to Wishlist" className="btn btn-danger btn-sm ms-2"><i className="fa fa-heart fa-2x"></i></button>
-                  </div>
-
-                </div>
-              </div>
-              {/* Product Box End */}
-
-              {/* Product Box */}
-              <div className="col-12 col-md-3 mb-4">
-                <div className="card">
-                  <img src={logo} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h4 className="card-title">Product title</h4>
-                    <h5 className="card-title text-muted">Price: Rs.500</h5>
-                  </div>
-
-                  <div className="card-footer">
-                    <button title="Add to Cart" className="btn btn-success btn-sm"><i className="fa-solid fa-cart-plus fa-2x"></i></button>
-                    <button title="Add to Wishlist" className="btn btn-danger btn-sm ms-2"><i className="fa fa-heart fa-2x"></i></button>
-                  </div>
-
-                </div>
-              </div>
-              {/* Product Box End */}
-
-              {/* Product Box */}
-              <div className="col-12 col-md-3 mb-4">
-                <div className="card">
-                  <img src={logo} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h4 className="card-title">Product title</h4>
-                    <h5 className="card-title text-muted">Price: Rs.500</h5>
-                  </div>
-
-                  <div className="card-footer">
-                    <button title="Add to Cart" className="btn btn-success btn-sm"><i className="fa-solid fa-cart-plus fa-2x"></i></button>
-                    <button title="Add to Wishlist" className="btn btn-danger btn-sm ms-2"><i className="fa fa-heart fa-2x"></i></button>
-                  </div>
-
-                </div>
-              </div>
-              {/* Product Box End */}
-
-              {/* Product Box */}
-              <div className="col-12 col-md-3 mb-4">
-                <div className="card">
-                  <img src={logo} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h4 className="card-title">Product title</h4>
-                    <h5 className="card-title text-muted">Price: Rs.500</h5>
-                  </div>
-
-                  <div className="card-footer">
-                    <button title="Add to Cart" className="btn btn-success btn-sm"><i className="fa-solid fa-cart-plus fa-2x"></i></button>
-                    <button title="Add to Wishlist" className="btn btn-danger btn-sm ms-2"><i className="fa fa-heart fa-2x"></i></button>
-                  </div>
-
-                </div>
-              </div>
-              {/* Product Box End */}
+              <SingleProduct title="Django"/>
+              <SingleProduct title="Django"/>
+              <SingleProduct title="Django"/>
+              <SingleProduct title="Django"/>
+              <SingleProduct title="Django"/>
+              <SingleProduct title="Django"/>
+              <SingleProduct title="Django"/>
+              <SingleProduct title="Django"/>
             </div>
             {/* End Latest Products */}
 
             {/* Popular Categories */}
             <h3 className="mb-4">Popular Categories <a href="#" className='float-end btn btn-dark'>View All Categories <i className="fa-solid fa-arrow-right-long"></i></a> </h3>
             <div className="row mb-4">
-              {/* Category Box */}
-              <div className="col-12 col-md-3 mb-4">
-                <div className="card">
-                  <img src={logo} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h4 className="card-title">Category title</h4>
-                  </div>
-                </div>
-              </div>
-              {/* Category Box End */}
-
-              {/* Category Box */}
-              <div className="col-12 col-md-3 mb-4">
-                <div className="card">
-                  <img src={logo} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h4 className="card-title">Category title</h4>
-                  </div>
-                </div>
-              </div>
-              {/* Category Box End */}
-
-              {/* Category Box */}
-              <div className="col-12 col-md-3 mb-4">
-                <div className="card">
-                  <img src={logo} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h4 className="card-title">Category title</h4>
-                  </div>
-                </div>
-              </div>
-              {/* Category Box End */}
-
-              {/* Category Box */}
-              <div className="col-12 col-md-3 mb-4">
-                <div className="card">
-                  <img src={logo} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h4 className="card-title">Category title</h4>
-                  </div>
-                </div>
-              </div>
-              {/* Category Box End */}
+              <SingleCategory title="Python"/>
+              <SingleCategory title="Python"/>
+              <SingleCategory title="Python"/>
+              <SingleCategory title="Python"/>
             </div>
             {/* End Popular Categories */}
 
             {/* Popular Products */}
             <h3 className="mb-4">Popular Products <a href="#" className='float-end btn btn-dark'>View All Products <i className="fa-solid fa-arrow-right-long"></i></a> </h3>
             <div className="row mb-4">
-              {/* Product Box */}
-              <div className="col-12 col-md-3 mb-4">
-                <div className="card">
-                  <img src={logo} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h4 className="card-title">Product title</h4>
-                    <h5 className="card-title text-muted">Price: Rs.500</h5>
-                  </div>
-
-                  <div className="card-footer">
-                    <button title="Add to Cart" className="btn btn-success btn-sm"><i className="fa-solid fa-cart-plus fa-2x"></i></button>
-                    <button title="Add to Wishlist" className="btn btn-danger btn-sm ms-2"><i className="fa fa-heart fa-2x"></i></button>
-                  </div>
-
-                </div>
-              </div>
-              {/* Product Box End */}
-
-              {/* Product Box */}
-              <div className="col-12 col-md-3 mb-4">
-                <div className="card">
-                  <img src={logo} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h4 className="card-title">Product title</h4>
-                    <h5 className="card-title text-muted">Price: Rs.500</h5>
-                  </div>
-
-                  <div className="card-footer">
-                    <button title="Add to Cart" className="btn btn-success btn-sm"><i className="fa-solid fa-cart-plus fa-2x"></i></button>
-                    <button title="Add to Wishlist" className="btn btn-danger btn-sm ms-2"><i className="fa fa-heart fa-2x"></i></button>
-                  </div>
-
-                </div>
-              </div>
-              {/* Product Box End */}
-
-              {/* Product Box */}
-              <div className="col-12 col-md-3 mb-4">
-                <div className="card">
-                  <img src={logo} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h4 className="card-title">Product title</h4>
-                    <h5 className="card-title text-muted">Price: Rs.500</h5>
-                  </div>
-
-                  <div className="card-footer">
-                    <button title="Add to Cart" className="btn btn-success btn-sm"><i className="fa-solid fa-cart-plus fa-2x"></i></button>
-                    <button title="Add to Wishlist" className="btn btn-danger btn-sm ms-2"><i className="fa fa-heart fa-2x"></i></button>
-                  </div>
-
-                </div>
-              </div>
-              {/* Product Box End */}
-
-              {/* Product Box */}
-              <div className="col-12 col-md-3 mb-4">
-                <div className="card">
-                  <img src={logo} className="card-img-top" alt="..." />
-                  <div className="card-body">
-                    <h4 className="card-title">Product title</h4>
-                    <h5 className="card-title text-muted">Price: Rs.500</h5>
-                  </div>
-
-                  <div className="card-footer">
-                    <button title="Add to Cart" className="btn btn-success btn-sm"><i className="fa-solid fa-cart-plus fa-2x"></i></button>
-                    <button title="Add to Wishlist" className="btn btn-danger btn-sm ms-2"><i className="fa fa-heart fa-2x"></i></button>
-                  </div>
-
-                </div>
-              </div>
-              {/* Product Box End */}
+              <SingleProduct title="Django"/>
+              <SingleProduct title="Django"/>
+              <SingleProduct title="Django"/>
+              <SingleProduct title="Django"/>
             </div>
             {/* End Popular Products */}
 

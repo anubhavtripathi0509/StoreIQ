@@ -6,7 +6,7 @@ function CategoryProducts() {
   return (
     <div className="container mt-4">
       {/* Latest Products */}
-      <h3 className="mb-4"><span className='text-success'>Python </span>Products <a href="#" className='float-end btn btn-dark'>View All Products <i className="fa-solid fa-arrow-right-long"></i></a> </h3>
+      <h3 className="mb-4"><span className='text-success'>Python </span>Products <Link to="/products" className='float-end btn btn-dark'>View All Products <i className="fa-solid fa-arrow-right-long"></i></Link> </h3>
             <div className="row mb-4">
               <SingleProduct title="Django"/>
               <SingleProduct title="Django"/>

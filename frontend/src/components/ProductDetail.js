@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from '../logo.svg';
 
-function Product(props){
+function ProductDetail(props){
     return(
         <div className="container mt-4">
             <div className="row">
@@ -23,4 +23,4 @@ function Product(props){
     );
 }
 
-export default Product;
+export default ProductDetail;
