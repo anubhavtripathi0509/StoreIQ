@@ -10,6 +10,7 @@ import Categories from './components/Categories';
 import CategoryProducts from './components/CategoryProducts';
 import ProductDetail from './components/ProductDetail';
 import AllProducts from './components/AllProducts';
+import Checkout from './components/Checkout';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path='/products' element={<AllProducts/>}/>
           <Route path='/category/:category_slug/:category_id' element={<CategoryProducts/>}/>
           <Route path='/products/:product_slug/:product_id' element={<ProductDetail title="Django"/>}/>
+          <Route path='/checkout' element={<Checkout/>}/>
         </Routes>
       <Footer/>
     </>
