@@ -14,8 +14,21 @@ function ProductDetail(props){
                     <h5 className="text-muted">Price: Rs.500</h5>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, quibusdam.</p>
                     <div className="d-flex">
-                        <button className="btn btn-success btn-lg">Add to Cart</button>
-                        <button className="btn btn-danger btn-lg ms-2">Add to Wishlist</button>
+                        <Link title="Demo" target="blank" className="btn btn-dark ms-2"><i className="fa-solid fa-cart-plus fa-1x me-2"></i>Demo</Link>
+                        <button title="Add to Cart" className="btn btn-primary ms-2"><i className="fa-solid fa-cart-plus fa-1x me-2"></i>Add to Cart</button>
+                        <button title="Buy Now" className="btn btn-success ms-2"><i className="fa-solid fa-cart-plus fa-1x  me-2"></i>Buy Now</button>
+                        <button title="Add to Wishlist" className="btn btn-danger ms-2"><i className="fa fa-heart fa-1x  me-2"></i>Add to Wishlist</button>
+                    </div>
+                    <hr />
+                    <div className="mt-4">
+                    <p className="mt-3">
+                    <h5 className="text-muted">Tags:</h5>
+                        <Link to="/products" className="badge bg-secondary text-white me-1">Back to Products </Link>
+                        <Link to="/products" className="badge bg-secondary text-white me-1">Back to Products </Link>
+                        <Link to="/products" className="badge bg-secondary text-white me-1">Back to Products </Link>
+                        <Link to="/products" className="badge bg-secondary text-white me-1">Back to Products </Link>
+                        <Link to="/products" className="badge bg-secondary text-white me-1">Back to Products </Link>
+                    </p>
                     </div>
                 </div>
             </div>

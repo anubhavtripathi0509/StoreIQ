@@ -7,7 +7,7 @@ function SingleCategory(props){
         /* Category Box */
         <div className="col-12 col-md-3 mb-4">
           <div className="card">
-            <img src={logo} className="card-img-top" alt="..." />
+            <Link to="/category/python/1"><img src={logo} className="card-img-top" alt="..." /></Link>
             <div className="card-body">
               <h4 className="card-title"><Link to='/category/python/1'>{props.title}</Link></h4>
             </div>

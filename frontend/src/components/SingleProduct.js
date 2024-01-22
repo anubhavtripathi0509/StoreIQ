@@ -6,7 +6,7 @@ function SingleProduct(props){
         /* Product Box */
         <div className="col-12 col-md-3 mb-4">
         <div className="card">
-          <img src={logo} className="card-img-top" alt="..." />
+          <Link to="/products/python-timer/1"><img src={logo} className="card-img-top" alt="..." /></Link>
           <div className="card-body">
             {/* <h4 className="card-title"><Link to='/category/python/1/python-timer-script/1'>{props.title}</Link></h4> */}
             <h4 className="card-title"><Link to='/products/python-timer-script/1'>{props.title}</Link></h4>
