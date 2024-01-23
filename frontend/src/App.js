@@ -28,6 +28,7 @@ import AddAddress from './components/Customer/AddAddress';
 import SellerRegistration from './components/Seller/Registration';
 import SellerLogin from './components/Seller/Login';
 import SellerDashboard from './components/Seller/Dashboard';
+import SellerProducts from './components/Seller/SellerProducts';
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
           <Route path='/seller-register' element={<SellerRegistration/>}/>
           <Route path='/seller-login' element={<SellerLogin/>}/>
           <Route path='/seller-dashboard' element={<SellerDashboard/>}/>
+          <Route path='/seller/totalproducts' element={<SellerProducts/>}/>
         </Routes>
       <Footer/>
     </>
