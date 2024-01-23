@@ -13,6 +13,8 @@ import AllProducts from './components/AllProducts';
 import Checkout from './components/Checkout';
 import Registration from './components/customer/Registration';
 import Login from './components/customer/Login';
+import Dashboard from './components/customer/Dashboard';
+import Orders from './components/customer/Orders';
 
 
 function App() {
@@ -28,6 +30,8 @@ function App() {
           <Route path='/checkout' element={<Checkout/>}/>
           <Route path='/customer-register' element={<Registration/>}/>
           <Route path='/customer-login' element={<Login/>}/>
+          <Route path='/customer-dashboard' element={<Dashboard/>}/>
+          <Route path='/customer-orders' element={<Orders/>}/>
         </Routes>
       <Footer/>
     </>
