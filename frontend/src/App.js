@@ -11,17 +11,23 @@ import CategoryProducts from './components/CategoryProducts';
 import ProductDetail from './components/ProductDetail';
 import AllProducts from './components/AllProducts';
 import Checkout from './components/Checkout';
-import Registration from './components/customer/Registration';
-import Login from './components/customer/Login';
-import Dashboard from './components/customer/Dashboard';
-import Orders from './components/customer/Orders';
-import OrderSuccess from './components/customer/OrderSucces';
-import Wishlist from './components/customer/Wishlist';
-import Profile from './components/customer/Profile';
-import ChangePassword from './components/customer/ChangePassword';
-import Address from './components/customer/Address';
-import AddAddress from './components/customer/AddAddress';
 
+// Customer Panel
+import Registration from './components/Customer/Registration';
+import Login from './components/Customer/Login';
+import Dashboard from './components/Customer/Dashboard';
+import Orders from './components/Customer/Orders';
+import OrderSuccess from './components/Customer/OrderSucces';
+import Wishlist from './components/Customer/Wishlist';
+import Profile from './components/Customer/Profile';
+import ChangePassword from './components/Customer/ChangePassword';
+import Address from './components/Customer/Address';
+import AddAddress from './components/Customer/AddAddress';
+
+// Seller Panel
+import SellerRegistration from './components/Seller/Registration';
+import SellerLogin from './components/Seller/Login';
+import SellerDashboard from './components/Seller/Dashboard';
 
 function App() {
   return (
@@ -34,6 +40,8 @@ function App() {
           <Route path='/category/:category_slug/:category_id' element={<CategoryProducts/>}/>
           <Route path='/products/:product_slug/:product_id' element={<ProductDetail title="Django"/>}/>
           <Route path='/checkout' element={<Checkout/>}/>
+
+          {/* Customer Panel */}
           <Route path='/customer-register' element={<Registration/>}/>
           <Route path='/customer-login' element={<Login/>}/>
           <Route path='/customer-dashboard' element={<Dashboard/>}/>
@@ -44,6 +52,11 @@ function App() {
           <Route path='/customer-change-password' element={<ChangePassword/>}/>
           <Route path='/customer-address' element={<Address/>}/>
           <Route path='/customer-add-address' element={<AddAddress/>}/>
+
+          {/* Seller Panel */}
+          <Route path='/seller-register' element={<SellerRegistration/>}/>
+          <Route path='/seller-login' element={<SellerLogin/>}/>
+          <Route path='/seller-dashboard' element={<SellerDashboard/>}/>
         </Routes>
       <Footer/>
     </>

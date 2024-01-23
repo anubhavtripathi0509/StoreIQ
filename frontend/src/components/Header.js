@@ -17,6 +17,11 @@ function Header() {
                 <li className="nav-item">
                     <Link className="nav-link" to="/categories">Categories</Link>
                 </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/checkout">My Cart (1)</Link>
+                </li>
+
+                {/* Customer Panel */}
                 <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         My Account
@@ -29,8 +34,23 @@ function Header() {
                         <li><Link to='/customer-dashboard' className="dropdown-item">Dashboard</Link></li>
                     </ul>
                 </li>
+
+
                 <li className="nav-item">
-                    <Link className="nav-link" to="/checkout">My Cart (1)</Link>
+                    <Link className="nav-link" to="/checkout">New Orders (1)</Link>
+                </li>
+                {/* Seller Panel */}
+                <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Seller Panel
+                    </a>
+                    <ul className="dropdown-menu">
+                        <li><Link to='/seller-register' className="dropdown-item">Register</Link></li>
+                        <li><Link to='/seller-login' className="dropdown-item">Login</Link></li>
+                        <li><Link to='/seller-login' className="dropdown-item">Logout</Link></li>
+                        <li><hr className="dropdown-divider"/></li>
+                        <li><Link to='/seller-dashboard' className="dropdown-item">Dashboard</Link></li>
+                    </ul>
                 </li>
                 </ul>
             </div>
