@@ -11,6 +11,8 @@ import CategoryProducts from './components/CategoryProducts';
 import ProductDetail from './components/ProductDetail';
 import AllProducts from './components/AllProducts';
 import Checkout from './components/Checkout';
+import Registration from './components/customer/Registration';
+import Login from './components/customer/Login';
 
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
           <Route path='/category/:category_slug/:category_id' element={<CategoryProducts/>}/>
           <Route path='/products/:product_slug/:product_id' element={<ProductDetail title="Django"/>}/>
           <Route path='/checkout' element={<Checkout/>}/>
+          <Route path='/customer-register' element={<Registration/>}/>
+          <Route path='/customer-login' element={<Login/>}/>
         </Routes>
       <Footer/>
     </>
