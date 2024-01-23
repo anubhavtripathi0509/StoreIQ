@@ -10,7 +10,10 @@ function Address(props){
                 <div className="col-md-9 col-12 mb-2">
                     <div className="row">
                         <div className="col-12">
-                            <Link to="" className="btn btn-outline-success mb-4 float-end">Add Address</Link>
+                            <Link to="/customer-add-address" className="btn btn-outline-success mb-4 float-end">
+                                <i className="fa fa-plus me-1"></i>
+                                Add Address
+                            </Link>
                         </div>
                     </div>
                     <div className="row">
