@@ -39,7 +39,7 @@ function Checkout(props){
                                 <td></td>
                                     <td colSpan="3" align="right">
                                         <Link to="/categories"><button className="btn btn-secondary float-right">Continue Shopping</button></Link>
-                                        <Link to="/"><button className="btn btn-success float-right ms-1">Proceed To Payment</button></Link>
+                                        <Link to="/order/success"><button className="btn btn-success float-right ms-1">Proceed To Payment</button></Link>
                                     </td>
                                     
                                 </tr>

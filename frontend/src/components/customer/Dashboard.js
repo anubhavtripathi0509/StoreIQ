@@ -26,7 +26,7 @@ function Dashboard(props){
                                 <div className="card-body text-center">
                                     <h4 className="card-title">Total Wishlist</h4>
                                     <p className="card-text">0</p>
-                                    <Link to="#" className="btn btn-primary">View</Link>
+                                    <Link to="/customer-wishlist" className="btn btn-primary">View</Link>
                                 </div>
                             </div>
                         </div>
@@ -37,7 +37,7 @@ function Dashboard(props){
                                 <div className="card-body text-center">
                                     <h4 className="card-title">Total Address</h4>
                                     <p className="card-text">0</p>
-                                    <Link to="#" className="btn btn-primary">View</Link>
+                                    <Link to="/customer-address" className="btn btn-primary">View</Link>
                                 </div>
                             </div>
                         </div>

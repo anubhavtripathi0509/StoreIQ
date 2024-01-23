@@ -15,6 +15,11 @@ import Registration from './components/customer/Registration';
 import Login from './components/customer/Login';
 import Dashboard from './components/customer/Dashboard';
 import Orders from './components/customer/Orders';
+import OrderSuccess from './components/customer/OrderSucces';
+import Wishlist from './components/customer/Wishlist';
+import Profile from './components/customer/Profile';
+import ChangePassword from './components/customer/ChangePassword';
+import Address from './components/customer/Address';
 
 
 function App() {
@@ -32,6 +37,11 @@ function App() {
           <Route path='/customer-login' element={<Login/>}/>
           <Route path='/customer-dashboard' element={<Dashboard/>}/>
           <Route path='/customer-orders' element={<Orders/>}/>
+          <Route path='/order/success' element={<OrderSuccess/>}/>
+          <Route path='/customer-wishlist' element={<Wishlist/>}/>
+          <Route path='/customer-profile' element={<Profile/>}/>
+          <Route path='/customer-change-password' element={<ChangePassword/>}/>
+          <Route path='/customer-address' element={<Address/>}/>
         </Routes>
       <Footer/>
     </>
