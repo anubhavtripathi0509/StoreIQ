@@ -7,7 +7,8 @@ function SellerProducts(props){
         <div className="container mt-4">
             <div className="row">
                 <SellerSidebar/>
-                <div className="col-md-9 col-12 mb-2">
+                <div className="col-md-8 col-12 mb-2">
+                    <Link to='/seller/addproducts' className="btn btn-primary mb-2"><i className="fa fa-plus-circle me-1"></i>Add Product</Link>
                     <div className="table-responsive">
                         <div className="table table-bordered">
                             <thead>
@@ -27,10 +28,11 @@ function SellerProducts(props){
                                     <td>500</td>
                                     <td>Published</td>
                                     <td>
-                                        <Link>View</Link>
-                                        <Link>Edit</Link>
-                                        <Link>Delete</Link>
+                                        <Link className="btn btn-info mb-2">View</Link>
+                                        <Link className="btn btn-primary ms-2 mb-2">Edit</Link>
+                                        <Link className="btn btn-danger ms-2 mb-2">Delete</Link>
                                     </td>
+                                    {/* <td></td> */}
                                 </tr>
                             </tbody>
                             
