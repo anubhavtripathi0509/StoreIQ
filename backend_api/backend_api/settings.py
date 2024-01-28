@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'corsheaders',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
@@ -45,6 +46,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -131,14 +133,17 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Add your React app's domain
+]
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSIONS_CLASSES': [
-        'rest_framework.permissions.isAuthenticated',
-    ],
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ],
-    'DEFAULT_PAGINATION_CLASS': 'main.pagination.CustomPagination',
-    'PAGE_SIZE': 10
+    # 'DEFAULT_PERMISSIONS_CLASSES': [
+    #     'rest_framework.permissions.isAuthenticated',
+    # ],
+    # 'DEFAULT_AUTHENTICATION_CLASSES': [
+    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
+    # ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 1,  # Set the desired number of items per page
 }

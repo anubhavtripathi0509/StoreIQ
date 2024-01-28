@@ -1,37 +1,58 @@
 import logo from '../logo.svg';
 import {Link} from 'react-router-dom';
 import SingleProduct from './SingleProduct';
+import {useState, useEffect} from 'react';
 
 function AllProducts() {
+  const baseUrl= 'http://127.0.0.1:8000/api';
+  const [products, setProducts] = useState([]);
+  const [totalResult, setTotalResults] = useState(0);
+  // const [baseurl, setbaseurl] = useState('http://127.0.0.1:8000/api/products/');
+
+  useEffect(() => {
+    fetchData(baseUrl+'/products');
+  },[]);
+
+  async function fetchData(baseurl) {
+    try {
+      const response = await fetch(baseurl);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      setProducts(data.results);
+      setTotalResults(data.count);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
+  function changeUrl(baseurl1){
+    fetchData(baseurl1);
+  }
+
+
+  var links=[];
+  for(let i=1; i<=totalResult; i++){
+    links.push(<li className='page-item'><Link onClick={()=>changeUrl(baseUrl+`/products/?page=${i}`)} to={`/products/?page=${i}`} className='page-link'>{i}</Link></li>)
+  }
+
+
   return (
     <div className="container mt-4">
       {/* Latest Products */}
       <h3 className="mb-4"><span className='text-success'>All </span>Products</h3>
             <div className="row mb-4">
-              <SingleProduct title="Django"/>
-              <SingleProduct title="Django"/>
-              <SingleProduct title="Django"/>
-              <SingleProduct title="Django"/>
-              <SingleProduct title="Django"/>
-              <SingleProduct title="Django"/>
-              <SingleProduct title="Django"/>
-              <SingleProduct title="Django"/>
+              {
+                products.map((product)=> <SingleProduct product={product}/>)
+              }
+              
             </div>
 
             {/* Pagination */}
             <nav aria-label="...">
-                <ul class="pagination">
-                    <li class="page-item disabled">
-                    <span class="page-link">Previous</span>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item active" aria-current="page">
-                    <span class="page-link">2</span>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                    </li>
+                <ul className="pagination">
+                    {links}
                 </ul>
             </nav>
     </div>

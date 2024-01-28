@@ -1,4 +1,5 @@
 from rest_framework import generics,permissions,pagination,viewsets
+from rest_framework.pagination import PageNumberPagination
 from django.shortcuts import render
 from .serializers import *
 from .models import *
@@ -21,7 +22,9 @@ class VendorDetail(generics.RetrieveUpdateDestroyAPIView):
 class ProductList(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductListSerializer
-    pagination_class = pagination.LimitOffsetPagination
+    # paginator = PageNumberPagination()
+    pagination_class = pagination.PageNumberPagination
+
 
 class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
