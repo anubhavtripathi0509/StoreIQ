@@ -9,7 +9,7 @@ function SingleCategory(props){
           <div className="card">
             <Link to="/category/python/1"><img src={logo} className="card-img-top" alt="..." /></Link>
             <div className="card-body">
-              <h4 className="card-title"><Link to='/category/python/1'>{props.title}</Link></h4>
+              <h4 className="card-title"><Link to={`/category/${props.category.title}/${props.category.id}`}>{props.category.title}</Link></h4>
             </div>
             <div className="card-footer">
                 Product Downloads:2356

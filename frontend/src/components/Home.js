@@ -5,6 +5,12 @@ import SingleProduct from './SingleProduct';
 import SingleCategory from './SingleCategory';
 
 function Home() {
+  const products = [
+    {title: 'Django', price: 200},
+    {title: 'Django', price: 200},
+    {title: 'Django', price: 200},
+    {title: 'Django', price: 200},
+  ];
     return (
         <main>
         <div className="mt-4">
@@ -12,14 +18,9 @@ function Home() {
             {/* Latest Products */}
             <h3 className="mb-4">Latest Products <Link to="/products" className='float-end btn btn-dark'>View All Products <i className="fa-solid fa-arrow-right-long"></i></Link> </h3>
             <div className="row mb-4">
-              <SingleProduct title="Django"/>
-              <SingleProduct title="Django"/>
-              <SingleProduct title="Django"/>
-              <SingleProduct title="Django"/>
-              <SingleProduct title="Django"/>
-              <SingleProduct title="Django"/>
-              <SingleProduct title="Django"/>
-              <SingleProduct title="Django"/>
+              {
+                products.map((product)=> <SingleProduct product={product}/>)
+              }
             </div>
             {/* End Latest Products */}
 
@@ -36,10 +37,9 @@ function Home() {
             {/* Popular Products */}
             <h3 className="mb-4">Popular Products <a href="#" className='float-end btn btn-dark'>View All Products <i className="fa-solid fa-arrow-right-long"></i></a> </h3>
             <div className="row mb-4">
-              <SingleProduct title="Django"/>
-              <SingleProduct title="Django"/>
-              <SingleProduct title="Django"/>
-              <SingleProduct title="Django"/>
+              {
+                products.map((product)=> <SingleProduct product={product}/>)
+              }
             </div>
             {/* End Popular Products */}
 
