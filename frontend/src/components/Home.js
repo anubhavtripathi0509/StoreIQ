@@ -27,10 +27,10 @@ function Home() {
             {/* Popular Categories */}
             <h3 className="mb-4">Popular Categories <a href="#" className='float-end btn btn-dark'>View All Categories <i className="fa-solid fa-arrow-right-long"></i></a> </h3>
             <div className="row mb-4">
+              {/* <SingleCategory title="Python"/>
               <SingleCategory title="Python"/>
               <SingleCategory title="Python"/>
-              <SingleCategory title="Python"/>
-              <SingleCategory title="Python"/>
+              <SingleCategory title="Python"/> */}
             </div>
             {/* End Popular Categories */}
 
@@ -42,7 +42,7 @@ function Home() {
               }
             </div>
             {/* End Popular Products */}
-
+            
             {/* Popular Seller */}
             <h3 className="mb-4">Popular Sellers <a href="#" className='float-end btn btn-dark'>View All Sellers <i className="fa-solid fa-arrow-right-long"></i></a> </h3>
             <div className="row mb-4">
