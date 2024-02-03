@@ -25,6 +25,13 @@ class ProductList(generics.ListCreateAPIView):
     # paginator = PageNumberPagination()
     pagination_class = pagination.PageNumberPagination
 
+    def get_queryset(self):
+        qs=super().get_queryset()
+        category=self.request.GET['category']
+        category=ProductCategory.objects.get(id=category)
+        qs=qs.filter(category=category)
+        return qs
+
 
 class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
