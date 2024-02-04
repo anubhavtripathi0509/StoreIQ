@@ -10,6 +10,7 @@ function ProductDetail(props){
     const baseUrl= 'http://127.0.0.1:8000/api';
     const [productData, setProductData] = useState([]);
     const [productImages, setProductImages] = useState([]);
+    const [productTags, setProductTags] = useState([]);
 
   useEffect(() => {
     fetchData(`${baseUrl}/product/${product_id}/`);
@@ -26,12 +27,19 @@ function ProductDetail(props){
       const data = await response.json();
       setProductData(data);
       setProductImages(data.product_images);
+      setProductTags(data.tag_list);
     } catch (error) {
       console.error('Error:', error);
     }
   }
 
-  console.log(productData.product_images);
+  const tagsLinks = [];
+  for (let i = 0; i < productTags.length; i++) {
+    let tag = productTags[i].trim();
+    // console.log(tag);
+    tagsLinks.push(<Link to={`/products/${tag}`} className="badge bg-secondary text-white me-1"></Link>);
+    }
+    console.log(tagsLinks);
   
 
 
@@ -95,11 +103,8 @@ function ProductDetail(props){
                     <div className="mt-4">
                     <p className="mt-3">
                     <h5 className="text-muted">Tags:</h5>
-                        <Link to="/products" className="badge bg-secondary text-white me-1">Back to Products </Link>
-                        <Link to="/products" className="badge bg-secondary text-white me-1">Back to Products </Link>
-                        <Link to="/products" className="badge bg-secondary text-white me-1">Back to Products </Link>
-                        <Link to="/products" className="badge bg-secondary text-white me-1">Back to Products </Link>
-                        <Link to="/products" className="badge bg-secondary text-white me-1">Back to Products </Link>
+                        <Link to="/products" className="badge bg-secondary text-white me-1">{tagsLinks}</Link>
+                        {tagsLinks}
                     </p>
                     </div>
                 </div>
