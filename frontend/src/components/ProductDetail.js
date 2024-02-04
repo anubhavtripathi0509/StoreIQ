@@ -2,8 +2,26 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from '../logo.svg';
 import SingleProduct from "./SingleProduct";
+import { useParams } from 'react-router-dom';
+import {useState, useEffect} from 'react';
 
 function ProductDetail(props){
+    const {product_slug,product_id} = useParams();
+    const baseUrl= 'http://127.0.0.1:8000/api';
+  const [productData, setProductData] = useState([]);
+
+  useEffect(() => {
+    fetchData(baseUrl+'/products/'+product_id);
+  },[]);
+
+  async function fetchData(baseurl) {
+    fetch(baseurl)
+    .then(response => response.json())
+    .then(data => setProductData(data));
+  }
+
+
+
     return(
         <div className="container mt-4">
             <div className="row">
@@ -36,8 +54,8 @@ function ProductDetail(props){
                     </div>
                 </div>
                 <div className="col-12 col-md-6">
-                    <h3>{props.title}</h3>
-                    <h5 className="text-muted">Price: Rs.500</h5>
+                    <h3>{productData.title}</h3>
+                    <h5 className="text-muted">{productData.price}</h5>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, quibusdam.</p>
                     <div className="d-flex">
                         <Link title="Demo" target="blank" className="btn btn-dark ms-2"><i className="fa-solid fa-cart-plus fa-1x me-2"></i>Demo</Link>
@@ -71,28 +89,25 @@ function ProductDetail(props){
                     <div className="carousel-item active">
                         {/* <img src={logo} className="d-block w-100" alt="..."/> */}
                         <div className="row mb-5">
-                            <SingleProduct title="Django"/>
-                            <SingleProduct title="Django"/>
-                            <SingleProduct title="Django"/>
-                            <SingleProduct title="Django"/>
+                        {
+                            productData.map((product)=> <SingleProduct product={product}/>)
+                        }
                         </div>
                     </div>
                     <div className="carousel-item">
                         {/* <img src={logo} className="d-block w-100" alt="..."/> */}
                         <div className="row mb-5">
-                            <SingleProduct title="Django"/>
-                            <SingleProduct title="Django"/>
-                            <SingleProduct title="Django"/>
-                            <SingleProduct title="Django"/>
+                        {
+                            productData.map((product)=> <SingleProduct product={product}/>)
+                        }
                         </div>
                     </div>
                     <div className="carousel-item">
                         {/* <img src={logo} className="d-block w-100" alt="..."/> */}
                         <div className="row mb-5">
-                            <SingleProduct title="Django"/>
-                            <SingleProduct title="Django"/>
-                            <SingleProduct title="Django"/>
-                            <SingleProduct title="Django"/>
+                        {
+                            productData.map((product)=> <SingleProduct product={product}/>)
+                        }
                         </div>
                     </div>
                 </div>

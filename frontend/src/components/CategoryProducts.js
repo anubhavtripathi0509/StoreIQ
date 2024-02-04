@@ -10,7 +10,7 @@ function CategoryProducts() {
   const [totalResult, setTotalResults] = useState(0);
   // const [baseurl, setbaseurl] = useState('http://127.0.0.1:8000/api/products/');
   const {category_slug,category_id} = useParams();
-  console.log(category_id);
+  // console.log(category_id);
 
 
   useEffect(() => {

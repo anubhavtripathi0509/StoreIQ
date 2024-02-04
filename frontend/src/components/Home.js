@@ -3,8 +3,24 @@ import {Link} from 'react-router-dom';
 import AllProducts from './AllProducts';
 import SingleProduct from './SingleProduct';
 import SingleCategory from './SingleCategory';
+import { useParams } from 'react-router-dom';
+import {useState, useEffect} from 'react';
 
 function Home() {
+  const {product_slug,product_id} = useParams();
+  const baseUrl= 'http://127.0.0.1:8000/api';
+  const [productData, setProductData] = useState([]);
+
+  useEffect(() => {
+    fetchData(baseUrl+'/products/'+product_id);
+  },[]);
+
+  async function fetchData(baseurl) {
+    fetch(baseurl)
+    .then(response => response.json())
+    .then(data => setProductData(data));
+  }
+
   const products = [
     {title: 'Django', price: 200},
     {title: 'Django', price: 200},
