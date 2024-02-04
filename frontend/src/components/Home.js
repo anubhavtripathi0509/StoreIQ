@@ -7,26 +7,39 @@ import { useParams } from 'react-router-dom';
 import {useState, useEffect} from 'react';
 
 function Home() {
-  const {product_slug,product_id} = useParams();
   const baseUrl= 'http://127.0.0.1:8000/api';
-  const [productData, setProductData] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [totalResult, setTotalResults] = useState(0);
+  // const [baseurl, setbaseurl] = useState('http://127.0.0.1:8000/api/products/');
 
   useEffect(() => {
-    fetchData(baseUrl+'/products/'+product_id);
+    fetchData(baseUrl+'/products/');
   },[]);
 
   async function fetchData(baseurl) {
-    fetch(baseurl)
-    .then(response => response.json())
-    .then(data => setProductData(data));
+    try {
+      const response = await fetch(baseurl);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      setProducts(data.results);
+      setTotalResults(data.count);
+    } catch (error) {
+      console.error('Error:', error);
+    }
   }
 
-  const products = [
-    {title: 'Django', price: 200},
-    {title: 'Django', price: 200},
-    {title: 'Django', price: 200},
-    {title: 'Django', price: 200},
-  ];
+  function changeUrl(baseurl1){
+    fetchData(baseurl1);
+  }
+
+  // const products = [
+  //   {title: 'Django', price: 200},
+  //   {title: 'Django', price: 200},
+  //   {title: 'Django', price: 200},
+  //   {title: 'Django', price: 200},
+  // ];
     return (
         <main>
         <div className="mt-4">

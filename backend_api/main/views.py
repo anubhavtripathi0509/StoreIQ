@@ -22,15 +22,22 @@ class VendorDetail(generics.RetrieveUpdateDestroyAPIView):
 class ProductList(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductListSerializer
-    # paginator = PageNumberPagination()
     pagination_class = pagination.PageNumberPagination
 
     def get_queryset(self):
-        qs=super().get_queryset()
-        category=self.request.GET['category']
-        category=ProductCategory.objects.get(id=category)
-        qs=qs.filter(category=category)
+        qs = super().get_queryset()
+        category_id = self.request.GET.get('category', None)
+
+        if category_id is not None:
+            try:
+                category = ProductCategory.objects.get(id=category_id)
+                qs = qs.filter(category=category)
+            except ProductCategory.DoesNotExist:
+                # Handle the case where the category with the given ID does not exist
+                pass
+
         return qs
+
 
 
 class ProductDetail(generics.RetrieveUpdateDestroyAPIView):

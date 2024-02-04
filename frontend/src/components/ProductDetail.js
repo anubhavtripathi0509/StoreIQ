@@ -8,17 +8,27 @@ import {useState, useEffect} from 'react';
 function ProductDetail(props){
     const {product_slug,product_id} = useParams();
     const baseUrl= 'http://127.0.0.1:8000/api';
-  const [productData, setProductData] = useState([]);
+    const [productData, setProductData] = useState([]);
 
   useEffect(() => {
-    fetchData(baseUrl+'/products/'+product_id);
+    fetchData(`${baseUrl}/product/${product_id}/`);
   },[]);
 
   async function fetchData(baseurl) {
-    fetch(baseurl)
-    .then(response => response.json())
-    .then(data => setProductData(data));
+    try {
+      const response = await fetch(baseurl);
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      setProductData(data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
   }
+  
 
 
 
@@ -55,8 +65,8 @@ function ProductDetail(props){
                 </div>
                 <div className="col-12 col-md-6">
                     <h3>{productData.title}</h3>
-                    <h5 className="text-muted">{productData.price}</h5>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, quibusdam.</p>
+                    <h5 className="text-muted">Price: {productData.price}</h5>
+                    <p>{productData.details}</p>
                     <div className="d-flex">
                         <Link title="Demo" target="blank" className="btn btn-dark ms-2"><i className="fa-solid fa-cart-plus fa-1x me-2"></i>Demo</Link>
                         <button title="Add to Cart" className="btn btn-primary ms-2"><i className="fa-solid fa-cart-plus fa-1x me-2"></i>Add to Cart</button>
@@ -90,7 +100,7 @@ function ProductDetail(props){
                         {/* <img src={logo} className="d-block w-100" alt="..."/> */}
                         <div className="row mb-5">
                         {
-                            productData.map((product)=> <SingleProduct product={product}/>)
+                            // productData.map((product)=> <SingleProduct product={product}/>)
                         }
                         </div>
                     </div>
@@ -98,7 +108,7 @@ function ProductDetail(props){
                         {/* <img src={logo} className="d-block w-100" alt="..."/> */}
                         <div className="row mb-5">
                         {
-                            productData.map((product)=> <SingleProduct product={product}/>)
+                            // productData.map((product)=> <SingleProduct product={product}/>)
                         }
                         </div>
                     </div>
@@ -106,7 +116,7 @@ function ProductDetail(props){
                         {/* <img src={logo} className="d-block w-100" alt="..."/> */}
                         <div className="row mb-5">
                         {
-                            productData.map((product)=> <SingleProduct product={product}/>)
+                            // productData.map((product)=> <SingleProduct product={product}/>)
                         }
                         </div>
                     </div>
