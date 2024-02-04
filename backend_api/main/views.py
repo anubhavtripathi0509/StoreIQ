@@ -38,6 +38,16 @@ class ProductList(generics.ListCreateAPIView):
 
         return qs
 
+class TagProductList(generics.ListCreateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductListSerializer
+    pagination_class = pagination.PageNumberPagination
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        tag = self.kwargs['tag']
+        qs = qs.filter(tags__name=tag)
+        return qs
 
 
 class ProductDetail(generics.RetrieveUpdateDestroyAPIView):

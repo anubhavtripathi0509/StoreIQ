@@ -11,6 +11,7 @@ import CategoryProducts from './components/CategoryProducts';
 import ProductDetail from './components/ProductDetail';
 import AllProducts from './components/AllProducts';
 import Checkout from './components/Checkout';
+import TagProducts from './components/TagProducts';
 
 // Customer Panel
 import Registration from './components/Customer/Registration';
@@ -45,7 +46,8 @@ function App() {
           <Route path='/categories' element={<Categories/>}/>
           <Route path='/products' element={<AllProducts/>}/>
           <Route path='/category/:category_slug/:category_id' element={<CategoryProducts/>}/>
-          <Route path='/products/:product_slug/:product_id' element={<ProductDetail title="Django"/>}/>
+          <Route path='/category/:tag' element={<TagProducts/>}/>
+          <Route path='/products/:product_slug/:product_id' element={<ProductDetail/>}/>
           <Route path='/checkout' element={<Checkout/>}/>
 
           {/* Customer Panel */}
