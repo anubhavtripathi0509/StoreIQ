@@ -9,6 +9,7 @@ function ProductDetail(props){
     const {product_slug,product_id} = useParams();
     const baseUrl= 'http://127.0.0.1:8000/api';
     const [productData, setProductData] = useState([]);
+    const [productImages, setProductImages] = useState([]);
 
   useEffect(() => {
     fetchData(`${baseUrl}/product/${product_id}/`);
@@ -24,10 +25,13 @@ function ProductDetail(props){
   
       const data = await response.json();
       setProductData(data);
+      setProductImages(data.product_images);
     } catch (error) {
       console.error('Error:', error);
     }
   }
+
+  console.log(productData.product_images);
   
 
 
@@ -38,12 +42,26 @@ function ProductDetail(props){
                 <div className="col-12 col-md-6">
                     <div id="relatedThumbnailSliders" className="carousel carousel-dark slide mt-4" data-bs-ride="true">
                         <div className="carousel-indicators">
-                            <button type="button" data-bs-target="#relatedThumbnailSliders" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
+                            {productImages.map((img, index)=> {
+                                if(index === 0){
+                                    return <button type="button" data-bs-target="#relatedThumbnailSliders" data-bs-slide-to={index} className="active" aria-current="true" aria-label={`Slide ${index+1}`}></button>
+                                }else{
+                                    return <button type="button" data-bs-target="#relatedThumbnailSliders" data-bs-slide-to={index} aria-label={`Slide ${index+1}`}></button>
+                                }
+                            })}
+                            {/* <button type="button" data-bs-target="#relatedThumbnailSliders" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
                             <button type="button" data-bs-target="#relatedThumbnailSliders" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#relatedThumbnailSliders" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#relatedThumbnailSliders" data-bs-slide-to="2" aria-label="Slide 3"></button> */}
                         </div>
                         <div className="carousel-inner">
-                            <div className="carousel-item active">
+                            {productImages.map((img, index)=> {
+                                if(index === 0){
+                                    return <div className="carousel-item active"> <img src={img.image} className="img-thumbnail mb-5" alt={index}/> </div>
+                                }else{
+                                    return <div className="carousel-item"> <img src={img.image} className="img-thumbnail mb-5" alt={index}/> </div>
+                                }
+                            })}
+                            {/* <div className="carousel-item active">
                                 <img src={logo} className="img-thumbnail mb-5" alt="..."/>
                             </div>
                             <div className="carousel-item">
@@ -51,7 +69,7 @@ function ProductDetail(props){
                             </div>
                             <div className="carousel-item">
                                 <img src={logo} className="img-thumbnail mb-5" alt="..."/>
-                            </div>
+                            </div> */}
                         </div>
                         <button className="carousel-control-prev" type="button" data-bs-target="#relatedThumbnailSliders" data-bs-slide="prev">
                             <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -99,9 +117,12 @@ function ProductDetail(props){
                     <div className="carousel-item active">
                         {/* <img src={logo} className="d-block w-100" alt="..."/> */}
                         <div className="row mb-5">
-                        {
+                        {/* {
                             // productData.map((product)=> <SingleProduct product={product}/>)
-                        }
+                            productData.product_images.map(
+                                (product, index)=> <div className="carousel-item active"> <img src={logo} className="d-block w-100" alt="..."/> </div>
+                            )
+                        } */}
                         </div>
                     </div>
                     <div className="carousel-item">
