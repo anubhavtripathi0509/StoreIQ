@@ -11,9 +11,11 @@ function ProductDetail(props){
     const [productData, setProductData] = useState([]);
     const [productImages, setProductImages] = useState([]);
     const [productTags, setProductTags] = useState([]);
+    const [relatedProduct, setRelatedProductData] = useState([]);
 
   useEffect(() => {
     fetchData(`${baseUrl}/product/${product_id}/`);
+    fetchRelatedData(`${baseUrl}/related-products/${product_id}/`);
   },[]);
 
   async function fetchData(baseurl) {
@@ -28,6 +30,23 @@ function ProductDetail(props){
       setProductData(data);
       setProductImages(data.product_images);
       setProductTags(data.tag_list);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
+  async function fetchRelatedData(baseurl) {
+    try {
+      const response = await fetch(baseurl);
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      setRelatedProductData(data);
+    //   setProductImages(data.product_images);
+    //   setProductTags(data.tag_list);
     } catch (error) {
       console.error('Error:', error);
     }
