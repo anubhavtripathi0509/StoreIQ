@@ -156,7 +156,7 @@ function ProductDetail(props){
                                             </div>
                                 }else{
                                     return <div className="carousel-item">
-                                                <SingleProduct product={product}/>
+                                                <SingleRelatedProduct product={product}/>
                                             </div>
                                 }
                             })}
