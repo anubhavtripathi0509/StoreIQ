@@ -4,10 +4,10 @@ import logo from '../logo.svg';
 function SingleRelatedProduct({ product }) {
   return (
     /* Product Box */
-    <div className="col-12 col-md-3 offset-md-6 col-sm-4 offset-sm-4 mb-4">
+    <div className="col-4 offset-4 mb-4">
       <div className="card">
         <Link to={`/products/${product.title}/${product.id}`}>
-          <img src={logo} className="card-img-top" alt="..." />
+          <img src={product.image} className="card-img-top" alt="..." />
         </Link>
         <div className="card-body">
           <h4 className="card-title">

@@ -131,7 +131,7 @@ function ProductDetail(props){
             </div>
 
             {/* Related Products */}
-            <h3 className="mt-5 mb-3">Related Products</h3>
+            <h3 className="mt-5 mb-3 text-center">Related Products</h3>
             <div id="relatedThumbnailSliders" className="carousel carousel-dark slide mt-4" data-bs-ride="true">
                 <div className="carousel-indicators">
                             {relatedProduct.map((product, index)=> {

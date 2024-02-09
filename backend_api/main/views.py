@@ -52,7 +52,7 @@ class TagProductList(generics.ListCreateAPIView):
 class RelatedProductList(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductListSerializer
-    pagination_class = pagination.PageNumberPagination
+    page_size = 10
 
     def get_queryset(self):
         qs = super().get_queryset()
