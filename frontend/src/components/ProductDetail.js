@@ -130,64 +130,37 @@ function ProductDetail(props){
                 </div>
             </div>
 
+
             {/* Related Products */}
-            <h3 className="mt-5 mb-3 text-center">Related Products</h3>
-            <div id="relatedThumbnailSliders" className="carousel carousel-dark slide mt-4" data-bs-ride="true">
-                <div className="carousel-indicators">
-                            {relatedProduct.map((product, index)=> {
-                                if(index === 0){
-                                    return <button type="button" data-bs-target="#relatedProductsSliders" data-bs-slide-to={index} className="active" aria-current="true" aria-label={`Slide ${index+1}`}></button>
-                                }else{
-                                    return <button type="button" data-bs-target="#relatedProductsSliders" data-bs-slide-to={index} aria-label={`Slide ${index+1}`}></button>
-                                }
-                            })}
-                    {/* <button type="button" data-bs-target="#relatedThumbnailSliders" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#relatedThumbnailSliders" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#relatedThumbnailSliders" data-bs-slide-to="2" aria-label="Slide 3"></button> */}
-                </div>
-                <div className="carousel-inner">
-                    <div className="carousel-item active">
-                        {/* <img src={logo} className="d-block w-100" alt="..."/> */}
-                        <div className="row mb-5">
-                            {relatedProduct.map((product, index)=> {
-                                if(index === 0){
-                                    return <div className="carousel-item active">
-                                                <SingleRelatedProduct product={product}/>
-                                            </div>
-                                }else{
-                                    return <div className="carousel-item">
-                                                <SingleRelatedProduct product={product}/>
-                                            </div>
-                                }
-                            })}
+                {relatedProduct.length > 0 && (
+                    <>
+                        <h3 className="mt-5 mb-3 text-center">Related Products</h3>
+                        <div id="relatedProductsSliders" className="carousel carousel-dark slide mt-4" data-bs-ride="true">
+                            <div className="carousel-indicators">
+                                {relatedProduct.map((_, index) => (
+                                    <button
+                                        key={index}
+                                        type="button"
+                                        data-bs-target="#relatedProductsSliders"
+                                        data-bs-slide-to={index}
+                                        className={index === 0 ? "active" : ""}
+                                        aria-current={index === 0 ? "true" : "false"}
+                                        aria-label={`Slide ${index + 1}`}
+                                    ></button>
+                                ))}
+                            </div>
+                            <div className="carousel-inner">
+                                {relatedProduct.map((product, index) => (
+                                    <div key={index} className={`carousel-item ${index === 0 ? "active" : ""}`}>
+                                        <div className="row mb-5">
+                                            <SingleRelatedProduct product={product} />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                    <div className="carousel-item">
-                        {/* <img src={logo} className="d-block w-100" alt="..."/> */}
-                        <div className="row mb-5">
-                        {
-                            // productData.map((product)=> <SingleProduct product={product}/>)
-                        }
-                        </div>
-                    </div>
-                    <div className="carousel-item">
-                        {/* <img src={logo} className="d-block w-100" alt="..."/> */}
-                        <div className="row mb-5">
-                        {
-                            // productData.map((product)=> <SingleProduct product={product}/>)
-                        }
-                        </div>
-                    </div>
-                </div>
-                {/* <button className="carousel-control-prev" type="button" data-bs-target="#relatedThumbnailSliders" data-bs-slide="prev">
-                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span className="visually-hidden">Previous</span>
-                </button>
-                <button className="carousel-control-next" type="button" data-bs-target="#relatedThumbnailSliders" data-bs-slide="next">
-                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span className="visually-hidden">Next</span>
-                </button> */}
-            </div>
+                    </>
+                )}
             {/* End Related Products */}
         </div>
     );
