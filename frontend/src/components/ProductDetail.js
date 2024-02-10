@@ -114,7 +114,7 @@ function ProductDetail(props){
                     <h5 className="text-muted">Price: {productData.price}</h5>
                     <p>{productData.details}</p>
                     <div className="d-flex">
-                        <Link title="Demo" target="blank" className="btn btn-dark ms-2"><i className="fa-solid fa-cart-plus fa-1x me-2"></i>Demo</Link>
+                        <a title="Demo" href={productData.demo_url} target="blank" className="btn btn-dark ms-2"><i className="fa-solid fa-cart-plus fa-1x me-2"></i>Demo</a>
                         <button title="Add to Cart" className="btn btn-primary ms-2"><i className="fa-solid fa-cart-plus fa-1x me-2"></i>Add to Cart</button>
                         <button title="Buy Now" className="btn btn-success ms-2"><i className="fa-solid fa-bag-shopping me-2"></i>Buy Now</button>
                         <button title="Add to Wishlist" className="btn btn-danger ms-2"><i className="fa fa-heart fa-1x  me-2"></i>Add to Wishlist</button>
