@@ -3,6 +3,10 @@ from rest_framework.pagination import PageNumberPagination
 from django.shortcuts import render
 from .serializers import *
 from .models import *
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+from django.contrib.auth import authenticate, login
+
 
 
 # Create your views here.
@@ -85,6 +89,24 @@ class CustomerList(generics.ListCreateAPIView):
 class CustomerDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Customer.objects.all()
     serializer_class = CustomerDetailSerializer
+
+
+@csrf_exempt
+def CustomerLogin(request):
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    user = authenticate(request, username=username, password=password)
+    if user:
+        msg = {
+            'bool':True,
+            'user':user.username
+        }
+    else:
+        msg={
+            'bool':False,
+            'msg':'Invalid username or password'
+        }
+    return JsonResponse(msg)
 
 class OrderList(generics.ListCreateAPIView):
     queryset = Order.objects.all()
