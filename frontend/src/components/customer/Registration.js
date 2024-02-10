@@ -1,8 +1,56 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import logo from '../../logo.svg';
+import { useState } from "react";
+import axios from "axios";
 
 function Registration(props){
+    const baseUrl = "http://127.0.0.1:8000/api";
+    const [formError, setFormError] = useState(false);
+    const [errorMsg, setErrorMsg] = useState();
+    const [registerFormData, setRegisterFormData] = useState({
+        'first_name': '',
+        'last_name': '',
+        'username': '',
+        'email': '',
+        'password': '',
+    });
+
+    const inputHandler = (e) => {
+        setRegisterFormData({
+            ...registerFormData,
+            [e.target.name]: e.target.value
+        })
+    };
+
+    const submitHandler = (e) => {
+        const formData = new FormData();
+        formData.append("first_name", registerFormData.first_name);
+        formData.append("last_name", registerFormData.last_name);
+        formData.append("username", registerFormData.username);
+        formData.append("email", registerFormData.email);
+        formData.append("password", registerFormData.password);
+
+        // axios.post(`${baseUrl}/customer-login/`, formData.get("username", "password"))
+        axios.post(`${baseUrl}/customer-login/`, formData)
+        .then(res => {
+            if(res.data.bool === false){
+                setFormError(true);
+                setErrorMsg(res.data.msg);
+            }
+            else{
+                console.log(res.data);
+                localStorage.setItem('customer_login', true);
+                localStorage.setItem('customer_username', res.data.user);
+                setFormError(false);
+                setErrorMsg("");
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    };
+
+    const buttonEnable = (registerFormData.username!='') && (registerFormData.password!='') && (registerFormData.email!='') && (registerFormData.first_name!='') && (registerFormData.last_name!='')
+
     return(
         <div className="container mt-4">
             {/* <h3 className="mb-4">Register</h3> */}
@@ -14,26 +62,26 @@ function Registration(props){
                             <form>
                                 <div className="mb-3">
                                     <label for="first-name" className="form-label">First Name</label>
-                                    <input type="text" className="form-control" id="first-name"/>
+                                    <input type="text" name="first_name" value={registerFormData.first_name} onChange={inputHandler} className="form-control" id="first-name"/>
                                 </div>
                                 <div className="mb-3">
                                     <label for="last-name" className="form-label">Last Name</label>
-                                    <input type="text" className="form-control" id="last-name"/>
+                                    <input type="text" onChange={inputHandler} value={registerFormData.last_name} className="form-control" id="last-name"/>
                                 </div>
                                 <div className="mb-3">
                                     <label for="username" className="form-label">Username</label>
-                                    <input type="text" className="form-control" id="username"/>
+                                    <input type="text" onChange={inputHandler} value={registerFormData.username} className="form-control" id="username"/>
                                 </div>
                                 <div className="mb-3">
-                                    <label for="username" className="form-label">Email</label>
-                                    <input type="email" className="form-control" id="username" aria-describedby="emailHelp"/>
+                                    <label for="email" className="form-label">Email</label>
+                                    <input type="email" onChange={inputHandler} className="form-control" value={registerFormData.email} id="email" aria-describedby="emailHelp"/>
                                     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                                 </div>
                                 <div className="mb-3">
                                     <label for="pwd" className="form-label">Password</label>
-                                    <input type="password" className="form-control" id="pwd"/>
+                                    <input type="password" onChange={inputHandler} value={registerFormData.password} className="form-control" id="pwd"/>
                                 </div>
-                                <button type="submit" className="btn btn-primary">Submit</button>
+                                <button type="submit" onClick={submitHandler} className="btn btn-primary">Submit</button>
                             </form>
                         </div>
                     </div>

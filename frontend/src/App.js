@@ -24,6 +24,7 @@ import Profile from './components/Customer/Profile';
 import ChangePassword from './components/Customer/ChangePassword';
 import Address from './components/Customer/Address';
 import AddAddress from './components/Customer/AddAddress';
+import Logout from './components/Customer/Logout';
 
 // Seller Panel
 import SellerRegistration from './components/Seller/Registration';
@@ -53,6 +54,7 @@ function App() {
           {/* Customer Panel */}
           <Route path='/customer-register' element={<Registration/>}/>
           <Route path='/customer-login' element={<Login/>}/>
+          <Route path='/customer-logout' element={<Logout/>}/>
           <Route path='/customer-dashboard' element={<Dashboard/>}/>
           <Route path='/customer-orders' element={<Orders/>}/>
           <Route path='/order/success' element={<OrderSuccess/>}/>

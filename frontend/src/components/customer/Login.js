@@ -32,8 +32,9 @@ function Login(props){
                 setErrorMsg(res.data.msg);
             }
             else{
+                console.log(res.data);
                 localStorage.setItem('customer_login', true);
-                localStorage.setItem('customer_username', res.data.username);
+                localStorage.setItem('customer_username', res.data.user);
                 setFormError(false);
                 setErrorMsg("");
             }
