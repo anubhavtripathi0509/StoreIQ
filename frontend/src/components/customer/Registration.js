@@ -30,7 +30,7 @@ function Registration(props){
         formData.append("password", registerFormData.password);
 
         // axios.post(`${baseUrl}/customer-login/`, formData.get("username", "password"))
-        axios.post(`${baseUrl}/customer-login/`, formData)
+        axios.post(`${baseUrl}/customer-register/`, formData)
         .then(res => {
             if(res.data.bool === false){
                 setFormError(true);
@@ -38,7 +38,7 @@ function Registration(props){
             }
             else{
                 console.log(res.data);
-                localStorage.setItem('customer_login', true);
+                localStorage.setItem('customer_register', true);
                 localStorage.setItem('customer_username', res.data.user);
                 setFormError(false);
                 setErrorMsg("");
@@ -49,7 +49,13 @@ function Registration(props){
         });
     };
 
-    const buttonEnable = (registerFormData.username!='') && (registerFormData.password!='') && (registerFormData.email!='') && (registerFormData.first_name!='') && (registerFormData.last_name!='')
+    const buttonEnable =
+        registerFormData.username !== '' &&
+        registerFormData.password !== '' &&
+        registerFormData.email !== '' &&
+        registerFormData.first_name !== '' &&
+        registerFormData.last_name !== '';
+
 
     return(
         <div className="container mt-4">
@@ -59,6 +65,7 @@ function Registration(props){
                     <div className="card">
                         <h4 className="card-header">Register</h4>
                         <div className="card-body">
+                            <p className="text-muted"><strong className="text-secondary">Note:</strong>*All fields are required</p>
                             <form>
                                 <div className="mb-3">
                                     <label for="first-name" className="form-label">First Name</label>
@@ -81,7 +88,7 @@ function Registration(props){
                                     <label for="pwd" className="form-label">Password</label>
                                     <input type="password" onChange={inputHandler} value={registerFormData.password} className="form-control" id="pwd"/>
                                 </div>
-                                <button type="submit" onClick={submitHandler} className="btn btn-primary">Submit</button>
+                                <button type="button" disabled={!buttonEnable} onClick={submitHandler} className="btn btn-primary">Submit</button>
                             </form>
                         </div>
                     </div>
