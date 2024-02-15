@@ -13,7 +13,7 @@ function SellerSidebar(props){
                 <Link to="/seller-reports" className="list-group-item list-group-item-action">Reports</Link>
                 <Link to="/seller-profile" className="list-group-item list-group-item-action">Profile</Link>
                 <Link to="/seller-change-password" className="list-group-item list-group-item-action">Change Password</Link>
-                <Link to="#" className="list-group-item list-group-item-action text-danger">Logout</Link>
+                <Link to="/seller-logout" className="list-group-item list-group-item-action text-danger">Logout</Link>
                 {/* <Link className="list-group-item list-group-item-action disabled" aria-disabled="true">A disabled link item</Link> */}
             </div>
         </div>
