@@ -1,8 +1,23 @@
-import { Link } from "react-router-dom";
-import logo from '../../logo.svg';
 import SellerSidebar from "./Sidebar";
+import { useState } from "react";
 
 function AddProduct() {
+    const [Productdata, setProductdata] = useState({
+        'category': "",
+        'vendor': "",
+        'title': "",
+        'slug': "",
+        'detail': "",
+        'price': "",
+        'usd_price': "",
+        'tags': "",
+        'status': "",
+    });
+
+    const inputHandler = (e) => {
+        // setProductdata({...Productdata, [e.target.name]: e.target.value});
+    }
+
     return (
         <div className="container mt-4">
         <div className="row">
@@ -16,7 +31,7 @@ function AddProduct() {
                 <form>
                     <div className="form-group mb-3">
                     <label>Product Name</label>
-                    <input type="text" className="form-control" placeholder="Enter Product Name"/>
+                    <input type="text" name="title" className="form-control" placeholder="Enter Product Name"/>
                     </div>
                     <div className="form-group mb-3">
                     <label>Product Price</label>
@@ -32,11 +47,10 @@ function AddProduct() {
                     </div>
                     <div className="form-group mb-3">
                     <label>Product Category</label>
-                    <select className="form-control">
-                        <option>Select Category</option>
-                        <option>Category 1</option>
-                        <option>Category 2</option>
-                        <option>Category 3</option>
+                    <select className="form-control" name="category" onChange={inputHandler}>
+                        <option value="python">Category 1</option>
+                        <option value="php">Category 2</option>
+                        <option value="js">Category 3</option>
                     </select>
                     </div>
                     <div className="form-group mb-3">
