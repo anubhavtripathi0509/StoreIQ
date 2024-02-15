@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {Link} from 'react-router-dom';
 function Header() {
+    // const userContext = useContext(UserContext);
+    // const {cartData} = useContext(CartContext);
+    const checkSeller = localStorage.getItem('seller_login');
+    const checkCustomer = localStorage.getItem('customer_login');
   return (
     <header>
         <nav className="navbar navbar-expand-lg navbar-dark bg-success">
@@ -26,13 +30,21 @@ function Header() {
                     <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         My Account
                     </a>
-                    <ul className="dropdown-menu">
-                        <li><Link to='/customer-register' className="dropdown-item">Register</Link></li>
-                        <li><Link to='/customer-login' className="dropdown-item">Login</Link></li>
-                        <li><Link to='/customer-logout' className="dropdown-item">Logout</Link></li>
-                        <li><hr className="dropdown-divider"/></li>
-                        <li><Link to='/customer-dashboard' className="dropdown-item">Dashboard</Link></li>
-                    </ul>
+                    {
+                        checkCustomer && 
+                        <ul className="dropdown-menu">
+                            <li><Link to='/customer-logout' className="dropdown-item">Logout</Link></li>
+                            <li><hr className="dropdown-divider"/></li>
+                            <li><Link to='/customer-dashboard' className="dropdown-item">Dashboard</Link></li>
+                        </ul>
+                    }
+                    {
+                        !checkCustomer && 
+                        <ul className="dropdown-menu">
+                            <li><Link to='/customer-register' className="dropdown-item">Register</Link></li>
+                            <li><Link to='/customer-login' className="dropdown-item">Login</Link></li>
+                        </ul>
+                    }
                 </li>
 
 
@@ -44,13 +56,21 @@ function Header() {
                     <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Seller Panel
                     </a>
-                    <ul className="dropdown-menu">
-                        <li><Link to='/seller-register' className="dropdown-item">Register</Link></li>
-                        <li><Link to='/seller-login' className="dropdown-item">Login</Link></li>
-                        <li><Link to='/seller-login' className="dropdown-item">Logout</Link></li>
-                        <li><hr className="dropdown-divider"/></li>
-                        <li><Link to='/seller-dashboard' className="dropdown-item">Dashboard</Link></li>
-                    </ul>
+                    {
+                        checkSeller && 
+                        <ul className="dropdown-menu">
+                            <li><Link to='/seller-logout' className="dropdown-item">Logout</Link></li>
+                            <li><hr className="dropdown-divider"/></li>
+                            <li><Link to='/seller-dashboard' className="dropdown-item">Dashboard</Link></li>
+                        </ul>
+                    }
+                    {
+                        !checkSeller && 
+                        <ul className="dropdown-menu">
+                            <li><Link to='/seller-register' className="dropdown-item">Register</Link></li>
+                            <li><Link to='/seller-login' className="dropdown-item">Login</Link></li>
+                        </ul>
+                    }
                 </li>
                 </ul>
             </div>

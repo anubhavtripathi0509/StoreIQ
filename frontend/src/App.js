@@ -37,6 +37,7 @@ import Customers from './components/Seller/Customers';
 import SellerReports from './components/Seller/Reports';
 import SellerProfile from './components/Seller/Profile';
 import SellerChangePassword from './components/Seller/ChangePassword';
+import SellerLogout from './components/Seller/SellerLogout';
 
 function App() {
   return (
@@ -67,6 +68,7 @@ function App() {
           {/* Seller Panel */}
           <Route path='/seller-register' element={<SellerRegistration/>}/>
           <Route path='/seller-login' element={<SellerLogin/>}/>
+          <Route path='/seller-logout' element={<SellerLogout/>}/>
           <Route path='/seller-dashboard' element={<SellerDashboard/>}/>
           <Route path='/seller/totalproducts' element={<SellerProducts/>}/>
           <Route path='/seller/addproducts' element={<AddProduct/>}/>

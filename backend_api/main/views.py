@@ -23,6 +23,25 @@ class VendorDetail(generics.RetrieveUpdateDestroyAPIView):
     # def get_object(self):
     #     return self.request.user.vendor
 
+@csrf_exempt
+def VendorLogin(request):
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    user = authenticate(request, username=username, password=password)
+    if user:
+        vendor=Vendor.objects.get(user=user)
+        msg = {
+            'bool':True,
+            'user':user.username,
+            'id':vendor.id
+        }
+    else:
+        msg={
+            'bool':False,
+            'msg':'Invalid username or password'
+        }
+    return JsonResponse(msg)
+
 class ProductList(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductListSerializer
