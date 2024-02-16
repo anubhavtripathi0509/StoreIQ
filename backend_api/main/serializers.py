@@ -30,7 +30,7 @@ class ProductListSerializer(serializers.ModelSerializer):
     class Meta:
         many = True
         model = Product
-        fields = ['id','category','vendor','title', 'slug', 'tag_list','details','price','product_ratings','image']
+        fields = ['id','category','vendor','title', 'slug', 'tag_list','details','price','product_ratings','image','tags','demo_url']
 
     def __init__(self, *args, **kwargs):
         super(ProductListSerializer, self).__init__(*args, **kwargs)
