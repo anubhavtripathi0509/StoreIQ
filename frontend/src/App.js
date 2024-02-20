@@ -72,6 +72,7 @@ function App() {
           <Route path='/seller-dashboard' element={<SellerDashboard/>}/>
           <Route path='/seller/totalproducts' element={<SellerProducts/>}/>
           <Route path='/seller/addproducts' element={<AddProduct/>}/>
+          <Route path='/seller/updateproducts/:product_id' element={<AddProduct/>}/>
           <Route path='/seller-orders' element={<SellerOrders/>}/>
           <Route path='/seller/totalcustomers' element={<Customers/>}/>
           <Route path='/seller-reports' element={<SellerReports/>}/>

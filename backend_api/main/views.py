@@ -6,6 +6,7 @@ from .models import *
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 
 
 
@@ -60,6 +61,11 @@ class ProductList(generics.ListCreateAPIView):
                 pass
 
         return qs
+    
+class ProductImagesList(generics.ListCreateAPIView):
+    queryset = ProductImages.objects.all()
+    serializer_class = ProductImageSerializer
+
 
 class TagProductList(generics.ListCreateAPIView):
     queryset = Product.objects.all()
@@ -133,17 +139,32 @@ def CustomerRegister(request):
     last_name = request.POST.get('last_name')
     username = request.POST.get('username')
     email = request.POST.get('email')
+    mobile = request.POST.get('mobile')
     password = request.POST.get('password')
-    user = authenticate(request, username=username, password=password)
+    # user = authenticate(request, username=username, password=password)
+    user = User.objects.create(
+        first_name=first_name,
+        last_name=last_name,
+        email=email,
+        # mobile=mobile,
+        username=username,
+        password=password,
+    )
     if user:
+        # create customer
+        customer=Customer.objects.create(
+            user=user,
+            mobile=mobile
+        )
         msg = {
             'bool':True,
-            'user':user.username
+            'user':user.id,
+            'customer':customer.id
         }
     else:
         msg={
             'bool':False,
-            'msg':'Invalid username or password'
+            'msg':'Something went wrong'
         }
     return JsonResponse(msg)
 

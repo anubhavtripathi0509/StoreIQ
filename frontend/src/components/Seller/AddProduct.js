@@ -116,9 +116,6 @@ function AddProduct() {
                                 return <option value={category.id}>{category.title}</option>
                             })                            
                         }
-                        {/* <option value="python">Category 1</option>
-                        <option value="php">Category 2</option>
-                        <option value="js">Category 3</option> */}
                     </select>
                     </div>
                     <div className="form-group mb-3">
@@ -149,14 +146,14 @@ function AddProduct() {
                     <label>Product File</label>
                     <input type="file" name="product_file" onChange={fileHandler} className="form-control"/>
                     </div>
-                    <div className="form-group mb-3">
+                    {/* <div className="form-group mb-3">
                     <label>Product Status</label>
                     <select className="form-control" name="status" onChange={inputHandler}>
                         <option>Select Status</option>
                         <option>Publish</option>
                         <option>Draft</option>
                     </select>
-                    </div>
+                    </div> */}
                     <div className="form-group mb-3">
                     <button className="btn btn-primary" onClick={submitHandler}>Add Product</button>
                     </div>

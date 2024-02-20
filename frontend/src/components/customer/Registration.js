@@ -11,6 +11,7 @@ function Registration(props){
         'last_name': '',
         'username': '',
         'email': '',
+        'mobile': '',
         'password': '',
     });
 
@@ -20,6 +21,7 @@ function Registration(props){
             [e.target.name]: e.target.value
         })
     };
+    console.log(registerFormData);
 
     const submitHandler = (e) => {
         const formData = new FormData();
@@ -27,6 +29,7 @@ function Registration(props){
         formData.append("last_name", registerFormData.last_name);
         formData.append("username", registerFormData.username);
         formData.append("email", registerFormData.email);
+        formData.append("mobile", registerFormData.mobile);
         formData.append("password", registerFormData.password);
 
         // axios.post(`${baseUrl}/customer-login/`, formData.get("username", "password"))
@@ -35,11 +38,22 @@ function Registration(props){
             if(res.data.bool === false){
                 setFormError(true);
                 setErrorMsg(res.data.msg);
+                alert("Registration Failed");
             }
             else{
                 console.log(res.data);
                 localStorage.setItem('customer_register', true);
                 localStorage.setItem('customer_username', res.data.user);
+                setRegisterFormData({
+                    'first_name': '',
+                    'last_name': '',
+                    'username': '',
+                    'email': '',
+                    'mobile': '',
+                    'password': '',
+                });
+                alert("Registration Successful");
+                window.location.href = "/customer-login";
                 setFormError(false);
                 setErrorMsg("");
             }
@@ -53,6 +67,7 @@ function Registration(props){
         registerFormData.username !== '' &&
         registerFormData.password !== '' &&
         registerFormData.email !== '' &&
+        registerFormData.mobile!== '' &&
         registerFormData.first_name !== '' &&
         registerFormData.last_name !== '';
 
@@ -73,20 +88,25 @@ function Registration(props){
                                 </div>
                                 <div className="mb-3">
                                     <label for="last-name" className="form-label">Last Name</label>
-                                    <input type="text" onChange={inputHandler} value={registerFormData.last_name} className="form-control" id="last-name"/>
+                                    <input type="text" name="last_name" value={registerFormData.last_name} onChange={inputHandler} className="form-control" id="last-name"/>
                                 </div>
                                 <div className="mb-3">
                                     <label for="username" className="form-label">Username</label>
-                                    <input type="text" onChange={inputHandler} value={registerFormData.username} className="form-control" id="username"/>
+                                    <input type="text" name="username" value={registerFormData.username} onChange={inputHandler} className="form-control" id="username"/>
                                 </div>
                                 <div className="mb-3">
                                     <label for="email" className="form-label">Email</label>
-                                    <input type="email" onChange={inputHandler} className="form-control" value={registerFormData.email} id="email" aria-describedby="emailHelp"/>
+                                    <input type="email" name="email" value={registerFormData.email} onChange={inputHandler} className="form-control" id="email" aria-describedby="emailHelp"/>
                                     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                                 </div>
                                 <div className="mb-3">
+                                    <label for="mobile" className="form-label">Mobile</label>
+                                    <input type="mobile" name="mobile" value={registerFormData.mobile} onChange={inputHandler} className="form-control" id="mobile" aria-describedby="mobileHelp"/>
+                                    <div id="mobileHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                </div>
+                                <div className="mb-3">
                                     <label for="pwd" className="form-label">Password</label>
-                                    <input type="password" onChange={inputHandler} value={registerFormData.password} className="form-control" id="pwd"/>
+                                    <input type="password" name="password" value={registerFormData.password} onChange={inputHandler} className="form-control" id="pwd"/>
                                 </div>
                                 <button type="button" disabled={!buttonEnable} onClick={submitHandler} className="btn btn-primary">Submit</button>
                             </form>

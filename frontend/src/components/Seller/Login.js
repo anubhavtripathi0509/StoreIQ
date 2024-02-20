@@ -33,7 +33,7 @@ function SellerLogin(props){
                 console.log(response.data);
                 localStorage.setItem('seller_id', response.data.id);
                 localStorage.setItem('seller_login', true);
-                localStorage.setItem('seller_username', response.data.username);
+                localStorage.setItem('seller_username', response.data.user);
                 setSuccessMsg(response.data.message);
                 setErrorMsg('');
             }
