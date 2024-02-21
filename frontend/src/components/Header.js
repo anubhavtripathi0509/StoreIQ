@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import {Link} from 'react-router-dom';
-import { UserContext } from '../Context';
+import { UserContext,CartContext } from '../Context';
 function Header() {
     const userContext = useContext(UserContext);
     console.log(userContext)
     const checkSeller = localStorage.getItem('seller_login');
+    const {cartData, setCartData} = useContext(CartContext);
     // const checkCustomer = localStorage.getItem('customer_login');
   return (
     <header>
@@ -23,7 +24,7 @@ function Header() {
                     <Link className="nav-link" to="/categories">Categories</Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link" to="/checkout">My Cart (1)</Link>
+                    <Link className="nav-link" to="/checkout">My Cart ({cartData.length})</Link>
                 </li>
 
                 {/* Customer Panel */}

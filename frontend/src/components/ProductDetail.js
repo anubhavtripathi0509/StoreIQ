@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from '../logo.svg';
-import SingleProduct from "./SingleProduct";
 import SingleRelatedProduct from "./SingleRelatedProduct";
 import { useParams } from 'react-router-dom';
 import {useState, useEffect} from 'react';
+import { useContext } from "react";
+import { UserContext,CartContext } from "../Context";
 
 function ProductDetail(props){
     const {product_slug,product_id} = useParams();
@@ -13,11 +13,28 @@ function ProductDetail(props){
     const [productImages, setProductImages] = useState([]);
     const [productTags, setProductTags] = useState([]);
     const [relatedProduct, setRelatedProductData] = useState([]);
+    const [cartButtonClickStatus, setCartButtonClickStatus] = useState(false);
+    const {cartData, setCartData} = useContext(CartContext);
 
   useEffect(() => {
     fetchData(`${baseUrl}/product/${product_id}/`);
     fetchRelatedData(`${baseUrl}/related-products/${product_id}/`);
+    checkProductInCart(product_id);
   },[]);
+
+  function checkProductInCart(product_id) {
+    var previousCart = localStorage.getItem('cartData');
+    var cartJson = JSON.parse(previousCart);
+    if(cartJson!=null){
+            cartJson.map((cart) => {
+                if(cart!=null && cart.product.id === product_id){
+                    setCartButtonClickStatus(true);
+                }
+            });
+        }
+  }
+
+
 
   async function fetchData(baseurl) {
     try {
@@ -62,6 +79,56 @@ function ProductDetail(props){
     console.log(tagsLinks);
   
 
+    const cartAddButtonHandler = () => {
+        let previousCart = localStorage.getItem('cartData');
+        let cartJson = JSON.parse(previousCart);
+        const cartData = [
+            {
+                'product':{
+                    'id': productData.id,
+                    'title': productData.title,
+                },
+                'user':{
+                    'id': 1,
+                }
+            }
+        ];
+        if(cartJson!=null){
+            cartJson.push(cartData);
+            localStorage.setItem('cartData', JSON.stringify(cartJson));
+            setCartData(cartJson);
+            setCartButtonClickStatus(true);
+        }
+        else{
+            var newCartList = [];
+            newCartList.push(cartData);
+            localStorage.setItem('cartData', JSON.stringify(newCartList));
+            setCartButtonClickStatus(true);
+        }
+    }
+
+    const cartRemoveButtonHandler = () => {
+        var previousCart = localStorage.getItem('cartData');
+        var cartJson = JSON.parse(previousCart);
+        cartJson.map((cart, index) => {
+            if (cart && cart.product && cart.product.id) {
+                // Only access id if all conditions are met
+                if (cart.product.id === productData.id) {
+                    // Remove this item from cart
+                    cartJson.splice(index, 1);
+                }
+            }
+        });
+        var cartString = JSON.stringify(cartJson);
+        localStorage.setItem('cartData', cartString);
+        // localStorage.removeItem('cartData');
+        setCartButtonClickStatus(false);
+        setCartData(cartJson);
+    }
+    
+    
+    
+    
 
 
     return(
@@ -89,15 +156,6 @@ function ProductDetail(props){
                                     return <div className="carousel-item"> <img src={img.image} className="img-thumbnail mb-5" alt={index}/> </div>
                                 }
                             })}
-                            {/* <div className="carousel-item active">
-                                <img src={logo} className="img-thumbnail mb-5" alt="..."/>
-                            </div>
-                            <div className="carousel-item">
-                                <img src={logo} className="img-thumbnail mb-5" alt="..."/>
-                            </div>
-                            <div className="carousel-item">
-                                <img src={logo} className="img-thumbnail mb-5" alt="..."/>
-                            </div> */}
                         </div>
                         <button className="carousel-control-prev" type="button" data-bs-target="#relatedThumbnailSliders" data-bs-slide="prev">
                             <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -115,7 +173,12 @@ function ProductDetail(props){
                     <p>{productData.details}</p>
                     <div className="d-flex">
                         <a title="Demo" href={productData.demo_url} target="blank" className="btn btn-dark ms-2"><i className="fa-solid fa-cart-plus fa-1x me-2"></i>Demo</a>
-                        <button title="Add to Cart" className="btn btn-primary ms-2"><i className="fa-solid fa-cart-plus fa-1x me-2"></i>Add to Cart</button>
+                        {!cartButtonClickStatus && (
+                            <button type="button" onClick={cartAddButtonHandler} title="Add to Cart" className="btn btn-primary ms-2"><i className="fa-solid fa-cart-plus fa-1x me-2"></i>Add to Cart</button>
+                        )}
+                        {cartButtonClickStatus && (
+                            <button type="button" onClick={cartRemoveButtonHandler} title="Remove from Cart" className="btn btn-warning ms-2"><i className="fa-solid fa-cart-plus fa-1x me-2"></i>Remove from Cart</button>
+                        )}
                         <button title="Buy Now" className="btn btn-success ms-2"><i className="fa-solid fa-bag-shopping me-2"></i>Buy Now</button>
                         <button title="Add to Wishlist" className="btn btn-danger ms-2"><i className="fa fa-heart fa-1x  me-2"></i>Add to Wishlist</button>
                     </div>

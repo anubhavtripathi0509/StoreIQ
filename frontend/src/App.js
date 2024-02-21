@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import {Routes,Route} from 'react-router-dom';
 import './App.css';
 import bootstrap from 'bootstrap'
@@ -12,6 +12,7 @@ import ProductDetail from './components/ProductDetail';
 import AllProducts from './components/AllProducts';
 import Checkout from './components/Checkout';
 import TagProducts from './components/TagProducts';
+import { CartContext } from './Context';
 
 // Customer Panel
 import Registration from './components/Customer/Registration';
@@ -40,8 +41,9 @@ import SellerChangePassword from './components/Seller/ChangePassword';
 import SellerLogout from './components/Seller/SellerLogout';
 
 function App() {
+  const [cartData, setCartData] = useState([]);
   return (
-    <>
+    <CartContext.Provider value={{cartData, setCartData}}>
       <Header />
         <Routes>
           <Route path='/' element={<Home/>}/>
@@ -80,7 +82,7 @@ function App() {
           <Route path='/seller-change-password' element={<SellerChangePassword/>}/>
         </Routes>
       <Footer/>
-    </>
+    </CartContext.Provider>
   );
 }
 
