@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import {Link} from 'react-router-dom';
+import { UserContext } from '../Context';
 function Header() {
-    // const userContext = useContext(UserContext);
-    // const {cartData} = useContext(CartContext);
+    const userContext = useContext(UserContext);
+    console.log(userContext)
     const checkSeller = localStorage.getItem('seller_login');
-    const checkCustomer = localStorage.getItem('customer_login');
+    // const checkCustomer = localStorage.getItem('customer_login');
   return (
     <header>
         <nav className="navbar navbar-expand-lg navbar-dark bg-success">
@@ -31,7 +32,7 @@ function Header() {
                         My Account
                     </a>
                     {
-                        checkCustomer && 
+                        userContext && 
                         <ul className="dropdown-menu">
                             <li><Link to='/customer-logout' className="dropdown-item">Logout</Link></li>
                             <li><hr className="dropdown-divider"/></li>
@@ -39,7 +40,7 @@ function Header() {
                         </ul>
                     }
                     {
-                        !checkCustomer && 
+                        !userContext && 
                         <ul className="dropdown-menu">
                             <li><Link to='/customer-register' className="dropdown-item">Register</Link></li>
                             <li><Link to='/customer-login' className="dropdown-item">Login</Link></li>

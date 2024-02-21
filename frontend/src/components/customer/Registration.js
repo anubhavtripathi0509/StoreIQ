@@ -81,6 +81,7 @@ function Registration(props){
                         <h4 className="card-header">Register</h4>
                         <div className="card-body">
                             <p className="text-muted"><strong className="text-secondary">Note:</strong>*All fields are required</p>
+                            {errorMsg && <p className="text-danger">{errorMsg}</p>}
                             <form>
                                 <div className="mb-3">
                                     <label for="first-name" className="form-label">First Name</label>

@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
+from django.db import IntegrityError
 
 
 
@@ -122,15 +123,15 @@ def CustomerLogin(request):
     password = request.POST.get('password')
     user = authenticate(request, username=username, password=password)
     if user:
-        msg = {
-            'bool':True,
-            'user':user.username
-        }
+            msg = {
+                'bool':True,
+                'user':user.username
+            }
     else:
-        msg={
-            'bool':False,
-            'msg':'Invalid username or password'
-        }
+            msg={
+                'bool':False,
+                'msg':'Invalid username or password'
+            }
     return JsonResponse(msg)
 
 @csrf_exempt
@@ -142,30 +143,42 @@ def CustomerRegister(request):
     mobile = request.POST.get('mobile')
     password = request.POST.get('password')
     # user = authenticate(request, username=username, password=password)
-    user = User.objects.create(
-        first_name=first_name,
-        last_name=last_name,
-        email=email,
-        # mobile=mobile,
-        username=username,
-        password=password,
-    )
-    if user:
-        # create customer
-        customer=Customer.objects.create(
-            user=user,
-            mobile=mobile
+    try:
+        user = User.objects.create(
+            first_name=first_name,
+            last_name=last_name,
+            email=email,
+            # mobile=mobile,
+            username=username,
+            password=password,
         )
-        msg = {
-            'bool':True,
-            'user':user.id,
-            'customer':customer.id
-        }
-    else:
+        if user:
+            try:
+            # create customer
+                customer=Customer.objects.create(
+                    user=user,
+                    mobile=mobile
+                )
+                msg = {
+                    'bool':True,
+                    'user':user.id,
+                    'customer':customer.id
+                }
+            except IntegrityError:
+                msg={
+                    'bool':False,
+                    'msg':'Mobile number already exists'
+                }
+        else:
+            msg={
+                'bool':False,
+                'msg':'Something went wrong'
+            }
+    except IntegrityError:
         msg={
-            'bool':False,
-            'msg':'Something went wrong'
-        }
+                'bool':False,
+                'msg':'Username already exists'
+            }
     return JsonResponse(msg)
 
 class OrderList(generics.ListCreateAPIView):
